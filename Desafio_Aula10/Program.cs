@@ -7,6 +7,7 @@ namespace Desafio_Aula10
     {
         static void Main(string[] args)
         {
+            // colocar try e catch
             DB_ContextPoltronas.InicializaDB();
 
             List<TiposPassageiro> listaOpcoesDePassagem = new List<TiposPassageiro> { new PassagemNormal(), new PassagemEstudante(), new PassagemAposentado(), new PassagemDeficiente() };
@@ -21,27 +22,17 @@ namespace Desafio_Aula10
 
             double valorPassagem = formaPassagemSelecionada.CalcularValorPassagem(60.00);
 
-            Console.WriteLine($"Valor da passagem: R$ {valorPassagem}\n"); // Pode ser mais complexo caso seja variado conforme origem/destino
-
-            // Deseja continuar com a compra? Digite uma para continuar. 2 para cancelar passagem
-
-            Console.WriteLine("Poltronas disponíveis: P1 a P30\n");
-
-            Console.WriteLine("Poltronas de 1 a 5 com desconto de 15%\n");
+            Console.WriteLine($"Valor da passagem: R$ {valorPassagem}\n"); 
 
             PoltronasViewModel poltronaSelect = EscolherPoltrona();
 
-            Console.WriteLine("Digite 1 caso queira Seguro Passagem: *acréscimo de 3% ");
-            Console.WriteLine("Digite 2 caso não queira Seguro Passagem\n");
-            int Id_Seguro = int.Parse(Console.ReadLine());
-
-            Seguro seguro_ = new Seguro(Id_Seguro);
+            Seguro seguro = EscolherSeguro();
 
             TiposPassageiro tipoPassageiroSelecionado = EscolherTipoDePassagem(listaOpcoesDePassagem);
             
-            tipoPassageiroSelecionado.CalcularTotalPagamento(valorPassagem, seguro_, poltronaSelect);
+            tipoPassageiroSelecionado.CalcularTotalPagamento(valorPassagem, seguro, poltronaSelect);
 
-            servidorPassagem.Salvar(tipoPassageiroSelecionado, destinoSelect, formaPassagemSelecionada); // AQUI ESTÃO SENDO SALVOS OS ITENS PARA IMPRESSÃO DA PASSAGEM
+            servidorPassagem.Salvar(tipoPassageiroSelecionado, destinoSelect, formaPassagemSelecionada); 
         }
 
         private static TiposPassageiro EscolherTipoDePassagem(List<TiposPassageiro> listaOpcoesDePassagem)
@@ -52,7 +43,8 @@ namespace Desafio_Aula10
             {
                 try
                 {
-                    Console.WriteLine("Escolha o meio de Pagamento de sua Passagem:");
+                    Console.WriteLine();
+                    Console.WriteLine("Escolha o tipo de sua Passagem:");
                     foreach (var tipoDisponivel in listaOpcoesDePassagem)
                     {
                         Console.WriteLine($"Digite {tipoDisponivel.Id_TipoPassageiro} para {tipoDisponivel.TipoPassageiro}");
@@ -71,6 +63,7 @@ namespace Desafio_Aula10
             } while (EscolheuTipoPassageiro == false);
             return tipoPassageiroSelecionado;
         }
+
         private static FormaDePassagem EscolherFormaDePassagem(List<FormaDePassagem> listaOpcoesFormasDePassagemn)
         {
             bool EscolheuFormaDePassagem = false;
@@ -79,6 +72,8 @@ namespace Desafio_Aula10
             {
                 try
                 {
+                    Console.WriteLine("Poltronas disponíveis: P1 a P30\n");
+                    Console.WriteLine("Poltronas de 1 a 5 com desconto de 15%\n");
                     Console.WriteLine("Escolha a forma de Passagem:");
                     foreach (var formaDisponivel in listaOpcoesFormasDePassagemn)
                     {
@@ -86,6 +81,7 @@ namespace Desafio_Aula10
                     }
 
                     string id_formaPassagem = Console.ReadLine();
+                    Console.WriteLine();
                     formaPassagemSelecionada = FornaDePassagemFactory.ValidaFormaPassagem(id_formaPassagem);
   
                     EscolheuFormaDePassagem = true;
@@ -138,8 +134,10 @@ namespace Desafio_Aula10
                     {
                         Console.WriteLine($"{destinoDisponivel}");
                     }
-
+                    Console.WriteLine();
+                    Console.Write("Destino: ");
                     string destino = Console.ReadLine();
+                    Console.WriteLine();
                     destinoSelecionado = ValidacaoDestino.ValidadarDestinoExistente(destino);
 
                     EscolheuDestino = true;
@@ -154,6 +152,39 @@ namespace Desafio_Aula10
             return destinoSelecionado;
         }
 
+        private static Seguro EscolherSeguro()
+        {
+            bool EscolheuSeguro = false;
+            Seguro seguro_ = null;
+            do
+            {
+                try
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Digite 1 caso queira Seguro Passagem: *acréscimo de 3% ");
+                    Console.WriteLine("Digite 2 caso não queira Seguro Passagem");
+                    int Id_Seguro = int.Parse(Console.ReadLine());
+                    if(Id_Seguro == 1 || Id_Seguro == 2)
+                    {
+                        seguro_ = new Seguro(Id_Seguro);
+                        EscolheuSeguro = true;
+                    }                   
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Opção inexistente. Tente novamente!");
+                }
+
+            } while (EscolheuSeguro == false);
+            return seguro_;
+        }
+
     }
 }
+
+
+
+
+
 

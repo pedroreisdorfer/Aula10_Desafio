@@ -23,7 +23,7 @@ namespace Desafio_Aula10
             Console.WriteLine("Passagem para passageiro Deficiente");
         }
 
-        public override double CalcularTotalPagamento(double valor, Seguro seguro, PoltronasViewModel poltronasView) // pensar caso tiver seguro
+        public override double CalcularTotalPagamento(double valor, Seguro seguro, PoltronasViewModel poltronasView) 
         {
 
             ValorTotalCompra = 0 + (valor * seguro.ValorSeguro);

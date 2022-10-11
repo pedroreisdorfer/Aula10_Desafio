@@ -8,12 +8,8 @@ namespace Desafio_Aula10
     {
         public override int Id_TipoPassageiro { get => 2; }
         public override string TipoPassageiro { get => "Estudante"; }
-
-
-
         public Seguro seguro { get; set; }
-
-        public PoltronasViewModel PoltronaSelecionada_ { get; set; } // ser se é preciso
+        public PoltronasViewModel PoltronaSelecionada_ { get; set; } 
 
         public override string ToString()
         {
@@ -25,7 +21,7 @@ namespace Desafio_Aula10
             Console.WriteLine("Passagem para passageiro estudante");
         }
 
-        public override double CalcularTotalPagamento(double valor, Seguro seguro, PoltronasViewModel poltronasView) // pensar caso tiver seguro
+        public override double CalcularTotalPagamento(double valor, Seguro seguro, PoltronasViewModel poltronasView) 
         {
             if (poltronasView.Poltrona == "P1" ||
                 poltronasView.Poltrona == "P2" ||

@@ -8,8 +8,10 @@ namespace Desafio_Aula10
     {
         public void Salvar(TiposPassageiro tiposPassageiro, Origem_Destino origem_Destino, FormaDePassagem formaDePassagem)
         {
-            Console.WriteLine($"Servidor AAA - Salvando pagamento: R$ {tiposPassageiro.ValorTotalCompra.ToString("f2")} ");
-            Console.WriteLine($"Passagem de forma: {formaDePassagem.FormaPassagem}"); // colocar aqui lógica da forma de passagem
+            Console.WriteLine();
+            Console.WriteLine($"Salvando passagem --------------");
+            Console.WriteLine($"Valor total: R$ {tiposPassageiro.ValorTotalCompra.ToString("f2")}");
+            Console.WriteLine($"Passagem de forma: {formaDePassagem.FormaPassagem}"); 
             Console.WriteLine($"Passageiro tipo: {tiposPassageiro.TipoPassageiro}");
             Console.WriteLine($"Origem: {Origem_Destino.Origem}");
             Console.WriteLine($"Origem: {origem_Destino.Destino}");
