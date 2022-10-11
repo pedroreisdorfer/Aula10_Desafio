@@ -6,13 +6,12 @@ namespace Desafio_Aula10
 {
     public class Origem_Destino
     {
-        public string Origem { get; set; }
+        public static string Origem { get => "São Leopoldo"; }
         public string Destino { get; set; }
 
-        public Origem_Destino(string origem, string destino)
+        public Origem_Destino(string destino)
         {
-            this.Origem = origem;
-            this.Destino = destino;
+            Destino = destino;
         }
     }
 }

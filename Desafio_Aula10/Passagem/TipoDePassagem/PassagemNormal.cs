@@ -11,16 +11,6 @@ namespace Desafio_Aula10
 
         public Seguro seguro;
 
-        //public PassagemNormal()
-        //{
-
-        //}
-
-        //public override string ToString()
-        //{
-        //    return $"Pagamento Valor - {this.ValorTotalCompra:C}";
-        //}
-
         public override void ValidaTipoPassageiro()
         {
             Console.WriteLine("Passagem para passageiro normal");

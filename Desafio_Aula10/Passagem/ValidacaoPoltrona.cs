@@ -13,7 +13,6 @@ namespace Desafio_Aula10
             {
                
                 return poltrona;
-                //poltrona.Poltrona = POLTRONA_SELECIONADA;
             }
             else
             {

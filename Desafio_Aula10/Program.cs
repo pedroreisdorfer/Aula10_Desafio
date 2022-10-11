@@ -15,51 +15,33 @@ namespace Desafio_Aula10
 
             ServidorPassagem servidorPassagem = new ServidorPassagem();
 
-            Console.Write("Escolha sua Origem: ");
-            string origem = Console.ReadLine(); // validação contra número. Em um programa mais completo, colocar lista de opção de origem
-            Console.Write("Escolha sua Destino: ");
-            string destino = Console.ReadLine();
-            Origem_Destino origem_Destino = new Origem_Destino(origem, destino); // PASSADO DENTRO DO OBJETO PASSAGEM COMO PARÂMETRO DE ENTRADA
-
-            origem_Destino.Origem = origem;
-            origem_Destino.Destino = destino;
-
-            Console.WriteLine();
+            Origem_Destino destinoSelect = EscolherDestino();
 
             FormaDePassagem formaPassagemSelecionada = EscolherFormaDePassagem(listaOpcoesFormasDePassagemn);
 
             double valorPassagem = formaPassagemSelecionada.CalcularValorPassagem(60.00);
 
-            Console.WriteLine($"Valor da passagem: R$ {valorPassagem}"); // Pode ser mais complexo caso seja variado conforme origem/destino
+            Console.WriteLine($"Valor da passagem: R$ {valorPassagem}\n"); // Pode ser mais complexo caso seja variado conforme origem/destino
 
             // Deseja continuar com a compra? Digite uma para continuar. 2 para cancelar passagem
 
-            Console.WriteLine("Poltronas disponíveis: P1 a P30");
+            Console.WriteLine("Poltronas disponíveis: P1 a P30\n");
 
-            Console.WriteLine();
-
-            Console.WriteLine("Poltronas de 1 a 5 com desconto de 15%");
-
-            Console.WriteLine();
+            Console.WriteLine("Poltronas de 1 a 5 com desconto de 15%\n");
 
             PoltronasViewModel poltronaSelect = EscolherPoltrona();
 
-            Console.WriteLine();
-
             Console.WriteLine("Digite 1 caso queira Seguro Passagem: *acréscimo de 3% ");
-            Console.WriteLine("Digite 2 caso não queira Seguro Passagem");
+            Console.WriteLine("Digite 2 caso não queira Seguro Passagem\n");
             int Id_Seguro = int.Parse(Console.ReadLine());
 
             Seguro seguro_ = new Seguro(Id_Seguro);
-
-            Console.WriteLine();
 
             TiposPassageiro tipoPassageiroSelecionado = EscolherTipoDePassagem(listaOpcoesDePassagem);
             
             tipoPassageiroSelecionado.CalcularTotalPagamento(valorPassagem, seguro_, poltronaSelect);
 
-            servidorPassagem.Salvar(tipoPassageiroSelecionado, origem_Destino, formaPassagemSelecionada); // AQUI ESTÃO SENDO SALVOS OS ITENS PARA IMPRESSÃO DA PASSAGEM
-
+            servidorPassagem.Salvar(tipoPassageiroSelecionado, destinoSelect, formaPassagemSelecionada); // AQUI ESTÃO SENDO SALVOS OS ITENS PARA IMPRESSÃO DA PASSAGEM
         }
 
         private static TiposPassageiro EscolherTipoDePassagem(List<TiposPassageiro> listaOpcoesDePassagem)
@@ -141,6 +123,37 @@ namespace Desafio_Aula10
             } while (EscolheuPoltrona == false);
             return poltrona;
         }
+
+        private static Origem_Destino EscolherDestino()
+        {
+            bool EscolheuDestino = false;
+            Origem_Destino destinoSelecionado = null;
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Embarque de São Leopoldo");
+                    Console.WriteLine("Escolha seu destino:\n");
+                    foreach (var destinoDisponivel in Origem_DestinoDB.ListaDestinos)
+                    {
+                        Console.WriteLine($"{destinoDisponivel}");
+                    }
+
+                    string destino = Console.ReadLine();
+                    destinoSelecionado = ValidacaoDestino.ValidadarDestinoExistente(destino);
+
+                    EscolheuDestino = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Tente novamente!");
+                }
+
+            } while (EscolheuDestino == false);
+            return destinoSelecionado;
+        }
+
     }
 }
 
