@@ -14,7 +14,7 @@ namespace Desafio_Aula10
             Console.WriteLine($"Passagem de forma: {formaDePassagem.FormaPassagem}"); 
             Console.WriteLine($"Passageiro tipo: {tiposPassageiro.TipoPassageiro}");
             Console.WriteLine($"Origem: {Origem_Destino.Origem}");
-            Console.WriteLine($"Origem: {origem_Destino.Destino}");
+            Console.WriteLine($"Destino: {origem_Destino.Destino}");
         }
     }
 }

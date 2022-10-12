@@ -20,7 +20,7 @@ namespace Desafio_Aula10
 
             FormaDePassagem formaPassagemSelecionada = EscolherFormaDePassagem(listaOpcoesFormasDePassagemn);
 
-            double valorPassagem = formaPassagemSelecionada.CalcularValorPassagem(60.00);
+            double valorPassagem = formaPassagemSelecionada.CalcularValorPassagem(destinoSelect.ValorViagem);
 
             Console.WriteLine($"Valor da passagem: R$ {valorPassagem}\n"); 
 
@@ -139,7 +139,7 @@ namespace Desafio_Aula10
                     string destino = Console.ReadLine();
                     Console.WriteLine();
                     destinoSelecionado = ValidacaoDestino.ValidadarDestinoExistente(destino);
-
+                    destinoSelecionado.CalculoValorPassagem(destino);
                     EscolheuDestino = true;
                 }
                 catch (Exception e)

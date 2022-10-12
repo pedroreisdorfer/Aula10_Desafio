@@ -27,6 +27,9 @@ namespace Desafio_Aula10
 
             destino = "Curitiba";
             ListaDestinos.Add(destino);
+
+            destino = "São Paulo";
+            ListaDestinos.Add(destino);
         }
 
     }
