@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Configurações\Validações\" />
+    <Compile Remove="Configurações\Validações\**" />
+    <EmbeddedResource Remove="Configurações\Validações\**" />
+    <None Remove="Configurações\Validações\**" />
   </ItemGroup>
 
 </Project>
