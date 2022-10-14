@@ -7,7 +7,6 @@ namespace Desafio_Aula10
     {
         static void Main(string[] args)
         {
-            // colocar try e catch
             DB_ContextPoltronas.InicializaDB();
 
             List<TiposPassageiro> listaOpcoesDePassagem = new List<TiposPassageiro> { new PassagemNormal(), new PassagemEstudante(), new PassagemAposentado(), new PassagemDeficiente() };
@@ -16,23 +15,31 @@ namespace Desafio_Aula10
 
             ServidorPassagem servidorPassagem = new ServidorPassagem();
 
-            Origem_Destino destinoSelect = EscolherDestino();
+            try
+            {
+                Origem_Destino destinoSelect = EscolherDestino();
 
-            FormaDePassagem formaPassagemSelecionada = EscolherFormaDePassagem(listaOpcoesFormasDePassagemn);
+                FormaDePassagem formaPassagemSelecionada = EscolherFormaDePassagem(listaOpcoesFormasDePassagemn);
 
-            double valorPassagem = formaPassagemSelecionada.CalcularValorPassagem(destinoSelect.ValorViagem);
+                double valorPassagem = formaPassagemSelecionada.CalcularValorPassagem(destinoSelect.ValorViagem);
 
-            Console.WriteLine($"Valor da passagem: R$ {valorPassagem}\n"); 
+                Console.WriteLine($"Valor da passagem: R$ {valorPassagem}\n");
 
-            PoltronasViewModel poltronaSelect = EscolherPoltrona();
+                PoltronasViewModel poltronaSelect = EscolherPoltrona();
 
-            Seguro seguro = EscolherSeguro();
+                Seguro seguro = EscolherSeguro();
 
-            TiposPassageiro tipoPassageiroSelecionado = EscolherTipoDePassagem(listaOpcoesDePassagem);
-            
-            tipoPassageiroSelecionado.CalcularTotalPagamento(valorPassagem, seguro, poltronaSelect);
+                TiposPassageiro tipoPassageiroSelecionado = EscolherTipoDePassagem(listaOpcoesDePassagem);
 
-            servidorPassagem.Salvar(tipoPassageiroSelecionado, destinoSelect, formaPassagemSelecionada); 
+                tipoPassageiroSelecionado.CalcularTotalPagamento(valorPassagem, seguro, poltronaSelect);
+
+                servidorPassagem.Salvar(tipoPassageiroSelecionado, destinoSelect, formaPassagemSelecionada);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+      
         }
 
         private static TiposPassageiro EscolherTipoDePassagem(List<TiposPassageiro> listaOpcoesDePassagem)

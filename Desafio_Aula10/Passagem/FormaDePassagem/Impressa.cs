@@ -12,15 +12,12 @@ namespace Desafio_Aula10
 
         public Impressa()
         {
-
         }
 
         public override void ValidaFormaPassagem()
         {
             throw new NotImplementedException();
         }
-
-
 
         public override double CalcularValorPassagem(double valor) // pensar caso tiver seguro
         {

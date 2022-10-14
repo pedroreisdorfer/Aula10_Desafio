@@ -11,8 +11,6 @@ namespace Desafio_Aula10
         public double Valor { get; set; }
         public EnumFormaDePassagem enumFormaDePassagem { get; set; }
 
-        //public abstract double CalcularTotalPagamento(double valor, Seguro seguro, PoltronasViewModel poltronasView);
-
         public abstract void ValidaFormaPassagem(); ///
 
         public abstract double CalcularValorPassagem(double valor);

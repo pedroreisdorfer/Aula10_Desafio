@@ -10,8 +10,7 @@ namespace Desafio_Aula10
         {
             PoltronasViewModel poltrona = new PoltronasViewModel(poltronaSelecionada);
             if (DB_ContextPoltronas.ListaPoltronas.Contains(poltronaSelecionada))
-            {
-               
+            {            
                 return poltrona;
             }
             else

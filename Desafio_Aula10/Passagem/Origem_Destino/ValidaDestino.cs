@@ -11,7 +11,6 @@ namespace Desafio_Aula10
             Origem_Destino destino = new Origem_Destino(destinoSelecionado);
             if (Origem_DestinoDB.ListaDestinos.Contains(destinoSelecionado))
             {
-
                 return destino;
             }
             else

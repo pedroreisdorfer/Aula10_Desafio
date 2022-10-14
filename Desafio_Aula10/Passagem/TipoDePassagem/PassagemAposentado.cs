@@ -25,18 +25,19 @@ namespace Desafio_Aula10
 
         public override double CalcularTotalPagamento(double valor, Seguro seguro, PoltronasViewModel poltronasView) 
         {
-            if (poltronasView.Poltrona == "P1" ||
-               poltronasView.Poltrona == "P2" ||
-               poltronasView.Poltrona == "P3" ||
-               poltronasView.Poltrona == "P4" ||
-               poltronasView.Poltrona == "P5")
+            string polstronaSelect = poltronasView.Poltrona;
+            if (polstronaSelect == ("P1") ||
+                polstronaSelect == "P2" ||
+                polstronaSelect == "P3" ||
+                polstronaSelect == "P4" ||
+                polstronaSelect == "P5")
             {
                 ValorTotalCompra = valor - (valor * 0.15) + (valor * seguro.ValorSeguro);
                 return ValorTotalCompra;
             }
             else
             {
-                ValorTotalCompra = valor + (valor * seguro.ValorSeguro);
+                ValorTotalCompra = (valor - (valor * 0.05)) + (valor * seguro.ValorSeguro);
                 return ValorTotalCompra;
             }
         }

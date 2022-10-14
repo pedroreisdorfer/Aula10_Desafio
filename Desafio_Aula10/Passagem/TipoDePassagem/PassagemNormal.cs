@@ -16,8 +16,19 @@ namespace Desafio_Aula10
             Console.WriteLine("Passagem para passageiro normal");
         }
 
-        public override double CalcularTotalPagamento(double valor, Seguro seguro, PoltronasViewModel poltronasView) // pensar caso tiver seguro
+        public override double CalcularTotalPagamento(double valor, Seguro seguro, PoltronasViewModel poltronasView) 
         {
+            string polstronaSelect = poltronasView.Poltrona;
+            if (polstronaSelect == ("P1") ||
+                polstronaSelect == "P2" ||
+                polstronaSelect == "P3" ||
+                polstronaSelect == "P4" ||
+                polstronaSelect == "P5")
+            {
+                ValorTotalCompra = valor - (valor * 0.15) + (valor * seguro.ValorSeguro);
+                return ValorTotalCompra;
+            }
+
             ValorTotalCompra = valor + (valor * seguro.ValorSeguro);
             return ValorTotalCompra;
 

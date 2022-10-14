@@ -12,7 +12,6 @@ namespace Desafio_Aula10
 
         public Seguro(int tipo)
         {
-
             if (tipo == 1)
             {
                 ValorSeguro = 0.03;
@@ -21,9 +20,6 @@ namespace Desafio_Aula10
             {
                 ValorSeguro = 0;
             }
-
-            // mas aqui precisa ter validação caso seja digitado outro número
-
         }
 
     }

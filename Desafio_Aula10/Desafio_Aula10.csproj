@@ -5,10 +5,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Configurações\Validações\**" />
-    <EmbeddedResource Remove="Configurações\Validações\**" />
-    <None Remove="Configurações\Validações\**" />
-  </ItemGroup>
-
 </Project>

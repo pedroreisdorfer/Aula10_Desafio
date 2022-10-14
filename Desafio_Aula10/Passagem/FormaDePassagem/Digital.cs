@@ -13,7 +13,6 @@ namespace Desafio_Aula10
 
         public Digital()
         {
-
         }
 
         public override void ValidaFormaPassagem()
@@ -21,9 +20,7 @@ namespace Desafio_Aula10
             throw new NotImplementedException();
         }
 
-
-
-        public override double CalcularValorPassagem(double valor) // pensar caso tiver seguro
+        public override double CalcularValorPassagem(double valor) 
         {
             Valor = valor - (valor * 0.05);
             return Valor;
